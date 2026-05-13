@@ -1,0 +1,1757 @@
+:root {
+    --primary: #6b705c;
+    /* 橄欖綠 */
+    --primary-hover: #a5a58d;
+    /* 淺橄欖 */
+    --bg-light: #faf7f2;
+    /* 文青米色背景 */
+    --bg-card: #ffffff;
+    --text-main: #3f4e4f;
+    /* 深碳色 */
+    --text-muted: #8b9a47;
+    /* 苔蘚綠 */
+    --border-color: #ede0d4;
+    /* 柔和沙色邊框 */
+    --success: #cb997e;
+    /* 莫蘭迪金棕 */
+    --danger: #ddbea9;
+    /* 淺陶色 */
+    --shadow: 0 10px 30px -10px rgba(107, 112, 92, 0.1);
+    --radius: 16px;
+    --font-serif: 'Noto Serif TC', serif;
+    --urgent-bg: #fff5f5;
+    --urgent-border: #c53030;
+    --banner-bg: linear-gradient(135deg, #6b705c 0%, #a5a58d 100%);
+}
+
+/* 現代感載入狀態 (僅留文字) */
+.loader {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 60px 20px;
+    width: 100%;
+}
+
+.loading-text {
+    margin-top: 0;
+    font-size: 1rem;
+    color: var(--text-muted);
+    font-weight: 500;
+    letter-spacing: 0.05em;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes pulse {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.6;
+    }
+}
+
+[data-theme="dark"] {
+    --bg-light: #0f172a;
+    --bg-card: #1e293b;
+    --text-main: #f1f5f9;
+    --text-muted: #94a3b8;
+    --border-color: #334155;
+    --shadow: 0 10px 15px -3px rgb(0 0 0 / 0.3);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+}
+
+body {
+    font-family: 'Inter', 'Noto Sans TC', sans-serif;
+    background-color: var(--bg-light);
+    color: var(--text-main);
+    line-height: 1.8;
+    background-image:
+        radial-gradient(at 0% 0%, rgba(212, 163, 115, 0.05) 0px, transparent 50%),
+        radial-gradient(at 100% 100%, rgba(165, 165, 141, 0.05) 0px, transparent 50%);
+    background-attachment: fixed;
+}
+
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Header */
+header {
+    background: rgba(255, 255, 255, 0.95);
+    border-bottom: 1px solid var(--border-color);
+    padding: 12px 0;
+}
+
+.sticky-top-group {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background: var(--bg-light);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.05);
+    padding-bottom: 4px;
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.icon-btn {
+    background: none;
+    border: none;
+    font-size: 1.2rem;
+    cursor: pointer;
+    padding: 6px;
+    border-radius: 50%;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+}
+
+.icon-btn:hover {
+    background: rgba(0, 0, 0, 0.05);
+}
+
+.icon-btn:active {
+    transform: rotate(180deg) scale(0.9);
+}
+
+.logo .brand {
+    font-family: var(--font-serif);
+    font-weight: 700;
+    font-size: 1.5rem;
+    color: var(--primary);
+    letter-spacing: -0.5px;
+    white-space: nowrap;
+}
+
+.logo-img {
+    height: 42px;
+    width: auto;
+    vertical-align: middle;
+    margin-right: 12px;
+    border-radius: 8px;
+}
+
+.logo .tag {
+    font-size: 0.75rem;
+    background: var(--primary);
+    color: white;
+    padding: 2px 8px;
+    border-radius: 4px;
+    margin-left: 8px;
+    vertical-align: middle;
+}
+
+/* Tabs */
+.tabs {
+    display: flex;
+    gap: 8px;
+    margin: 4px 0 12px 0;
+    overflow-x: auto;
+    padding: 6px;
+    background: #f5ebe0;
+    /* 溫暖的莫蘭迪米色 */
+    border-radius: 14px;
+    border: 1px solid #e3d5ca;
+    scrollbar-width: none;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.02);
+}
+
+.tabs::-webkit-scrollbar {
+    display: none;
+}
+
+.tab-btn {
+    padding: 10px 20px;
+    border: none;
+    background: transparent;
+    color: var(--text-muted);
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    white-space: nowrap;
+    border-radius: var(--radius);
+    transition: all 0.2s;
+}
+
+.tab-btn.active {
+    background: var(--primary);
+    color: white;
+    box-shadow: var(--shadow);
+}
+
+/* Filter Bar */
+.filter-bar {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 24px;
+}
+
+.search-input {
+    position: relative;
+    width: 100%;
+}
+
+.search-input input {
+    width: 100%;
+    padding: 12px 16px 12px 40px;
+    border-radius: var(--radius);
+    border: 1px solid var(--border-color);
+    background: var(--bg-card);
+    color: var(--text-main);
+    font-size: 1rem;
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+.search-input input:focus {
+    border-color: var(--primary);
+}
+
+.search-icon {
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--text-muted);
+}
+
+.filter-options {
+    display: flex;
+    gap: 8px;
+}
+
+.filter-options select {
+    flex: 1;
+    padding: 8px 12px;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    background: var(--bg-card);
+    color: var(--text-main);
+}
+
+/* Course Cards */
+.content-view {
+    display: none;
+}
+
+.content-view.active {
+    display: block;
+    animation: tabSlideUp 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes tabSlideUp {
+    from {
+        opacity: 0;
+        transform: translateY(12px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.card {
+    background: var(--bg-card);
+    border-radius: var(--radius);
+    padding: 20px;
+    margin-bottom: 16px;
+    box-shadow: var(--shadow);
+    border: 1px solid var(--border-color);
+    transition: transform 0.2s;
+}
+
+.card:active {
+    transform: scale(0.98);
+}
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 12px;
+}
+
+.card-tag {
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: var(--primary);
+}
+
+.card-title {
+    font-size: 1.15rem;
+    font-weight: 700;
+    margin-bottom: 8px;
+}
+
+.card-info {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.card-footer {
+    margin-top: 16px;
+    padding-top: 16px;
+    border-top: 1px dashed var(--border-color);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Attendees Section */
+.attendees-section {
+    margin: 12px 0;
+    padding: 8px 12px;
+    background: #f8fafc;
+    border-radius: 8px;
+    font-size: 0.85rem;
+}
+
+.attendees-section .label {
+    color: var(--text-muted);
+    font-weight: 600;
+    margin-right: 4px;
+}
+
+.attendee-tags {
+    display: inline-flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 4px;
+}
+
+.attendee-tag {
+    background: #e2e8f0;
+    color: var(--text-main);
+    padding: 2px 8px;
+    border-radius: 100px;
+    font-size: 0.75rem;
+    font-weight: 500;
+}
+
+.attendee-tag.online-join {
+    background: #f1f5f9;
+    color: var(--text-muted);
+    border: 1px dashed var(--border-color);
+}
+
+.empty-attendees {
+    color: var(--text-muted);
+    font-style: italic;
+    font-size: 0.75rem;
+}
+
+/* Prompt Card Specific */
+.prompt-box {
+    background: #f1f5f9;
+    padding: 12px;
+    border-radius: 8px;
+    font-family: monospace;
+    font-size: 0.85rem;
+    margin: 10px 0;
+    white-space: pre-wrap;
+    max-height: 150px;
+    overflow-y: auto;
+}
+
+/* Buttons */
+.btn-primary {
+    background: #003366 !important;
+    color: white !important;
+    border: none !important;
+    padding: 6px 14px !important;
+    border-radius: 50px !important;
+    font-size: 0.85rem !important;
+    font-weight: 700 !important;
+    cursor: pointer !important;
+    white-space: nowrap !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    min-width: 80px !important;
+    transition: all 0.3s !important;
+}
+
+.btn-primary:hover {
+    background: #002244 !important;
+}
+
+.btn-copy {
+    background: var(--success);
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-size: 0.8rem;
+    cursor: pointer;
+}
+
+.fab {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: var(--primary);
+    color: white;
+    border: none;
+    font-size: 24px;
+    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.4);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Utilities */
+.hidden {
+    display: none !important;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Table Style for Courses (文青風表格) */
+.course-table-container {
+    background: var(--bg-card);
+    border-radius: var(--radius);
+    border: 1px solid var(--border-color);
+    box-shadow: var(--shadow);
+    overflow: hidden;
+    /* 確保圓角 */
+    margin-bottom: 30px;
+}
+
+.course-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.95rem;
+}
+
+.course-table th {
+    background: #fdfaf7;
+    color: var(--text-muted);
+    font-weight: 600;
+    text-align: left;
+    padding: 16px;
+    border-bottom: 1.5px solid var(--border-color);
+    letter-spacing: 1px;
+    white-space: nowrap;
+    /* 確保表頭文字不換行 */
+}
+
+.course-table td {
+    padding: 20px 16px;
+    border-bottom: 1px solid #f5ebe0;
+    vertical-align: top;
+}
+
+.course-table td.align-top {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.course-table tr:last-child td {
+    border-bottom: none;
+}
+
+.course-table tr:hover {
+    background: #fdfaf7;
+}
+
+/* 實體/線上課程背景區分 */
+.tr-physical {
+    background-color: #f5f3ff;
+    /* 極淺紫色 */
+}
+
+.tr-physical td:first-child {
+    border-left: 5px solid #a78bfa;
+    /* 紫色邊框 */
+}
+
+.tr-online {
+    background-color: #f0fdf4;
+    /* 極淺薄荷綠 */
+}
+
+.tr-online td:first-child {
+    border-left: 5px solid #10b981;
+    /* 線上則用綠色邊框 */
+}
+
+.tr-physical:hover {
+    background-color: #fff4e5;
+}
+
+.tr-online:hover {
+    background-color: #dcfce7;
+}
+
+/* 即將到來 (前 7 天) 的實體課程特別顯示 */
+.tr-upcoming-soon {
+    background-color: #fef9c3 !important;
+    /* 明亮的淡黃色 */
+    border-left: 5px solid #eab308;
+    /* 深金色邊框 */
+    animation: pulse-highlight 2s infinite;
+}
+
+@keyframes pulse-highlight {
+    0% {
+        background-color: #fef9c3;
+    }
+
+    50% {
+        background-color: #fef08a;
+    }
+
+    100% {
+        background-color: #fef9c3;
+    }
+}
+
+.tr-upcoming-soon .table-date {
+    color: #854d0e;
+    font-size: 1.05rem;
+}
+
+.tr-upcoming-soon:hover {
+    background-color: #fef08a !important;
+}
+
+/* 停用按鈕樣式 (結束報名) */
+.btn-disabled {
+    background: #f1f5f9;
+    color: #94a3b8;
+    border: 1px solid var(--border-color);
+    padding: 8px 16px;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: not-allowed;
+    width: 100%;
+}
+
+.deadline-text {
+    font-size: 0.7rem;
+    color: #ef4444;
+    font-weight: 700;
+    margin-top: 4px;
+}
+
+.table-date {
+    font-weight: 700;
+    color: var(--primary);
+    white-space: nowrap;
+}
+
+.table-title {
+    font-weight: 600;
+    color: var(--text-main);
+    margin-bottom: 4px;
+}
+
+.table-meta {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.table-attendees {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+}
+
+
+/* Sub Filter Group */
+.sub-filter-group {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 20px;
+    padding: 4px;
+    background: #f1f5f9;
+    border-radius: 10px;
+    width: fit-content;
+}
+
+.sub-filter-btn {
+    padding: 6px 16px;
+    border: none;
+    background: transparent;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: all 0.2s;
+    color: var(--text-muted);
+}
+
+.sub-filter-btn.active {
+    background: white;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+/* 依照類別配置底色/文字色 */
+.sub-filter-btn[data-location="physical"].active {
+    background: #f5f3ff;
+    color: #7c3aed;
+}
+
+.sub-filter-btn[data-location="online"].active {
+    background: #ecfdf5;
+    color: #059669;
+}
+
+.sub-filter-btn[data-location="all"].active {
+    background: white;
+    color: var(--primary);
+}
+
+/* Category & Location Tags */
+.category-tag {
+    font-size: 0.75rem;
+    background: #eff6ff;
+    color: var(--primary);
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-weight: 600;
+    white-space: nowrap;
+    transition: all 0.2s ease;
+}
+
+.category-tag.clickable {
+    cursor: pointer;
+}
+
+.category-tag.clickable:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    filter: brightness(1.1);
+}
+
+.category-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    align-items: flex-start;
+}
+
+.category-stack.flex-row {
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.category-tag.highlight {
+    background: var(--primary);
+    color: white;
+    padding: 4px 10px;
+    font-size: 0.8rem;
+    border-radius: 6px;
+    box-shadow: 0 2px 4px rgba(107, 112, 92, 0.2);
+}
+
+/* Tag Cloud for Filtering */
+.tag-cloud {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 20px;
+}
+
+.category-filter-bar {
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border-color);
+    margin-bottom: 20px;
+}
+
+.category-tag-btn {
+    padding: 5px 12px;
+    border-radius: 20px;
+    border: 1px solid var(--border-color);
+    background: white;
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.category-tag-btn:hover {
+    background: #f8fafc;
+    border-color: var(--primary);
+    color: var(--primary);
+}
+
+.category-tag-btn.active {
+    background: var(--primary);
+    color: white;
+    border-color: var(--primary);
+    box-shadow: 0 4px 12px rgba(107, 112, 92, 0.2);
+}
+
+font-size: 0.75rem;
+padding: 2px 8px;
+border-radius: 4px;
+font-weight: 600;
+}
+
+.location-tag.online {
+    background: #ecfdf5;
+    color: #059669;
+}
+
+.location-tag.physical {
+    background: #f5f3ff;
+    color: #7c3aed;
+}
+
+.card-date {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    margin-bottom: 4px;
+}
+
+/* Prompt Card Styling */
+.prompt-card h3 {
+    font-size: 1rem;
+    color: var(--text-muted);
+    margin-bottom: 8px;
+}
+
+.prompt-content {
+    background: #f8fafc;
+    border: 1px solid var(--border-color);
+    padding: 12px;
+    border-radius: 12px;
+    font-size: 0.9rem;
+    white-space: pre-wrap;
+    height: 120px;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    font-family: 'Inter', sans-serif;
+    text-align: left;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.btn-secondary {
+    background: #e2e8f0;
+    color: var(--text-main);
+    border: none;
+    padding: 8px 16px;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    white-space: nowrap;
+}
+
+.btn-secondary.copied {
+    background: var(--success);
+    color: white;
+}
+
+.btn-cancel-出席 {
+    background: #fff1f0;
+    color: #cf1322;
+    border: 1px solid #ffa39e;
+}
+
+.btn-cancel-出席:hover {
+    background: #ffccc7;
+    color: #a8071a;
+}
+
+button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    background: #f1f5f9;
+    color: #94a3b8;
+}
+
+
+/* Buckets */
+.bucket {
+    margin-bottom: 30px;
+}
+
+.bucket-title {
+    font-size: 1.1rem;
+    font-family: var(--font-serif);
+    color: var(--primary);
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    user-select: none;
+    transition: opacity 0.2s;
+    width: fit-content;
+}
+
+.bucket-title:hover {
+    opacity: 0.7;
+}
+
+.bucket-icon {
+    display: inline-block;
+    font-size: 1.2rem;
+}
+
+.bucket-toggle {
+    display: inline-block;
+    width: 0;
+    height: 0;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-top: 5px solid var(--primary);
+    transition: transform 0.3s ease;
+    margin-right: 4px;
+    opacity: 0.5;
+}
+
+.bucket.collapsed .bucket-toggle {
+    transform: rotate(-90deg);
+}
+
+.bucket.collapsed .bucket-content {
+    display: none;
+}
+
+/* Sub Buckets (Years) */
+.sub-bucket {
+    margin-bottom: 12px;
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.sub-bucket-title {
+    font-size: 0.95rem;
+    color: var(--text-muted);
+    padding: 10px 16px;
+    background: #fdfaf7;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 700;
+    transition: background 0.2s;
+}
+
+.sub-bucket-title:hover {
+    background: #f5ebe0;
+}
+
+.sub-bucket.collapsed .sub-bucket-content {
+    display: none;
+}
+
+.sub-bucket.collapsed .bucket-toggle {
+    transform: rotate(-90deg);
+}
+
+.sub-bucket-content {
+    padding: 0;
+}
+
+.sub-bucket-content .course-table-container {
+    margin-bottom: 0;
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
+}
+
+.bucket-today .course-table-container {
+    background-color: var(--urgent-bg);
+    border-left: 6px solid var(--urgent-border);
+}
+
+.bucket-past summary {
+    cursor: pointer;
+    list-style: none;
+    padding: 10px;
+    background: #f1f5f9;
+    border-radius: 8px;
+    transition: background 0.2s;
+}
+
+.bucket-past summary:hover {
+    background: #e2e8f0;
+}
+
+/* Latest News Banner (Fixed at top) */
+.news-banner {
+    background: #fffafa;
+    /* 稍微偏白一點的米色 */
+    border: 1px solid #e3d5ca;
+    padding: 6px 12px;
+    margin: 12px 0 8px 0;
+    border-radius: 14px;
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    font-size: 0.95rem;
+    color: var(--text-main);
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.02);
+    border-left: 5px solid var(--success);
+}
+
+.news-label {
+    background: var(--success);
+    color: white;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-weight: 700;
+    font-size: 0.75rem;
+    white-space: nowrap;
+    margin-top: 0;
+}
+
+.news-body {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    position: relative;
+}
+
+.news-content {
+    font-weight: 500;
+    line-height: 1.5;
+    padding-bottom: 0;
+}
+
+.news-date {
+    font-size: 0.85rem;
+    color: #94a3b8;
+    margin-top: 4px;
+    font-weight: 500;
+}
+
+/* General Formatting */
+.pre-wrap {
+    white-space: pre-wrap !important;
+}
+
+/* Link Icons & Utilities */
+.link-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    border-radius: 6px;
+    background: #f1f5f9;
+    color: var(--primary);
+    text-decoration: none;
+    transition: all 0.2s;
+    font-size: 1.1rem;
+    vertical-align: middle;
+}
+
+.link-icon:hover {
+    background: var(--primary);
+    color: white;
+    transform: translateY(-2px);
+}
+
+.btn-dimmed {
+    opacity: 0.3;
+    pointer-events: none;
+    cursor: not-allowed;
+    filter: grayscale(1);
+}
+
+/* Prompt category tags in Section 1 */
+.prompt-tag-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 20px;
+    padding: 12px;
+    background: rgba(255, 255, 255, 0.5);
+    border-radius: 16px;
+    border: 1px dashed var(--border-color);
+}
+
+.prompt-tag-container.tag-cloud {
+    flex-wrap: wrap !important;
+    overflow-x: visible !important;
+}
+
+.prompt-header-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    gap: 10px;
+}
+
+.icon-btn-copy {
+    background: #f1f5f9;
+    border: 1px solid var(--border-color);
+    color: var(--primary);
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s;
+    flex-shrink: 0;
+    position: relative;
+    overflow: hidden;
+}
+
+.copied-text {
+    font-size: 0.65rem;
+    font-weight: 800;
+    line-height: 1.1;
+    color: var(--primary);
+}
+
+.icon-btn-copy:hover {
+    background: var(--primary);
+    color: white;
+}
+
+.resource-title-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 12px;
+    width: 100%;
+}
+
+.resource-title-row .table-title {
+    flex: 0 0 70%;
+    margin-bottom: 0;
+}
+
+.table-date-sub {
+    flex: 0 0 30%;
+    text-align: right;
+    font-size: 0.75rem;
+    color: #94a3b8;
+    font-weight: 400;
+    margin-top: 4px;
+    white-space: nowrap;
+}
+
+@media (max-width: 600px) {
+    .resource-title-row {
+        flex-direction: column;
+        gap: 2px;
+    }
+
+    .resource-title-row .table-title {
+        flex: 0 0 100%;
+    }
+
+    .table-date-sub {
+        flex: 0 0 100%;
+        text-align: left;
+        margin-top: 0;
+    }
+}
+
+/* Table Text Optimization */
+.table-title,
+.details-content,
+.news-content,
+.prompt-content,
+.table-meta,
+.news-banner {
+    white-space: pre-wrap;
+    overflow-wrap: break-word;
+    /* 確保長連結會折行 */
+    word-break: break-word;
+    /* 補充折行機制 */
+}
+
+.mobile-header-row {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.mobile-meta-grid {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 8px;
+}
+
+
+/* Expand Details */
+.btn-expand {
+    background: none;
+    border: 1px solid var(--border-color);
+    color: var(--text-muted);
+    font-size: 0.75rem;
+    padding: 4px 8px;
+    border-radius: 6px;
+    cursor: pointer;
+    margin-top: 8px;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    transition: all 0.2s;
+}
+
+.btn-expand:hover,
+.btn-expand.active {
+    border-color: #f59e0b;
+    color: #d97706;
+    background: #fffbeb;
+}
+
+.btn-expand.btn-has-content {
+    border-color: #6b705c;
+    background: #fdfaf7;
+    color: #6b705c;
+    border-width: 1.5px;
+    font-weight: 700;
+}
+
+.course-details {
+    margin-top: 10px;
+    padding: 12px;
+    background: white;
+    border-radius: 8px;
+    border: 1px dashed var(--border-color);
+    animation: fadeIn 0.3s ease-out;
+}
+
+/* 預設隱藏細節內部的邊框，手機版才顯示 */
+}
+
+.details-content {
+    font-size: 0.85rem;
+    color: var(--text-main);
+}
+
+
+
+/* Modal Styles */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(107, 112, 92, 0.4);
+    backdrop-filter: blur(4px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    transition: opacity 0.3s ease;
+}
+
+.modal {
+    background: var(--bg-card);
+    width: 90%;
+    max-width: 500px;
+    border-radius: var(--radius);
+    padding: 24px;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+    animation: modalIn 0.3s ease-out;
+}
+
+@keyframes modalIn {
+    from {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.modal-header h3 {
+    font-family: var(--font-serif);
+    color: var(--primary);
+}
+
+/* Admin Form */
+.admin-form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    max-height: 60vh;
+    overflow-y: auto;
+    padding: 4px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.form-group label {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--text-muted);
+}
+
+.form-group input,
+.form-group textarea {
+    padding: 10px;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    font-size: 1rem;
+    outline: none;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    border-color: var(--primary);
+}
+
+.input-readonly {
+    background: #f1f5f9;
+    cursor: not-allowed;
+}
+
+.form-group small {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+}
+
+.close-modal {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: var(--text-muted);
+}
+
+.modal-footer {
+    margin-top: 24px;
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+}
+
+.btn-cancel {
+    background: #f1f5f9;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    color: var(--text-main);
+}
+
+.btn-confirm {
+    background: var(--primary);
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+/* Login Section Styling */
+.flex-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 70vh;
+}
+
+.login-card {
+    background: var(--bg-card);
+    padding: 50px 40px;
+    border-radius: 24px;
+    box-shadow: 0 25px 50px -12px rgba(107, 112, 92, 0.2);
+    text-align: center;
+    max-width: 440px;
+    width: 90%;
+    border: 1px solid var(--border-color);
+    animation: fadeIn 0.8s ease-out;
+}
+
+.login-logo {
+    width: 100px;
+    height: auto;
+    margin-bottom: 24px;
+    border-radius: 16px;
+}
+
+.login-card h2 {
+    font-family: var(--font-serif);
+    color: var(--primary);
+    font-size: 1.8rem;
+    margin-bottom: 16px;
+}
+
+.login-hint {
+    color: var(--text-muted);
+    margin-bottom: 40px;
+    font-size: 1.1rem;
+    font-weight: 500;
+}
+
+#google-signin-btn {
+    display: flex;
+    justify-content: center;
+    transform: scale(1.1);
+}
+
+.btn-text {
+    background: none;
+    border: none;
+    color: var(--primary);
+    font-weight: 600;
+    cursor: pointer;
+    margin-left: 10px;
+    text-decoration: none;
+    opacity: 0.8;
+}
+
+.btn-text:hover {
+    opacity: 1;
+    text-decoration: underline;
+}
+
+@media (max-width: 600px) {
+    .login-card {
+        padding: 40px 20px;
+        margin: 20px;
+    }
+
+    .flex-center {
+        min-height: 80vh;
+    }
+}
+
+/* --- 行動版整體比例優化 (768px 以下) --- */
+@media (max-width: 768px) {
+    :root {
+        --radius: 12px;
+    }
+
+    .container {
+        padding: 0 12px;
+    }
+
+    /* 1. 資訊密度優化 */
+    .card,
+    .course-table td,
+    .course-table-container {
+        padding: 10px !important;
+    }
+
+    .bucket {
+        margin-bottom: 20px;
+    }
+
+    .card {
+        margin-bottom: 12px;
+    }
+
+    /* 2. 字體大小優化 */
+    body {
+        font-size: 0.9rem;
+    }
+
+    h2,
+    .logo .brand {
+        font-size: 1.25rem;
+    }
+
+    .bucket-title,
+    .modal-header h3 {
+        font-size: 1.1rem;
+    }
+
+    .table-title,
+    .card-title {
+        font-size: 1.05rem;
+        font-weight: 700;
+    }
+
+    .table-meta,
+    .details-content,
+    .news-content,
+    .news-date {
+        font-size: 0.85rem;
+    }
+
+    /* 3. Header 優化 */
+    header {
+        padding: 8px 0;
+    }
+
+    .logo-img {
+        height: 32px;
+        margin-right: 8px;
+    }
+
+    #user-info {
+        display: flex !important;
+        flex-direction: row !important;
+        align-items: center;
+        gap: 8px;
+    }
+
+    #user-avatar {
+        width: 36px !important;
+        height: 36px !important;
+    }
+
+    #user-name {
+        font-size: 0.85rem;
+    }
+
+    .btn-text {
+        font-size: 0.85rem;
+        margin-left: 4px;
+    }
+
+    /* 4. 標籤與篩選器 (支援水平捲動) */
+    .tabs,
+    .sub-filter-group {
+        display: flex !important;
+        overflow-x: auto !important;
+        flex-wrap: nowrap !important;
+        gap: 6px;
+        padding-bottom: 8px;
+        margin: 4px 0 12px 0;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .prompt-tag-container {
+        flex-wrap: wrap !important;
+        overflow-x: visible !important;
+    }
+
+    .tab-btn,
+    .sub-filter-btn {
+        padding: 6px 12px;
+        font-size: 0.85rem;
+    }
+
+    /* 5. 課程表格轉為 Flex 佈局以精準控制併排 */
+    .course-table thead {
+        display: none;
+    }
+
+    .course-table tr {
+        display: flex !important;
+        flex-wrap: wrap !important;
+        flex-direction: row !important;
+        margin-bottom: 12px;
+        border: 1px solid var(--border-color);
+        border-radius: var(--radius);
+        background: var(--bg-card);
+        overflow: hidden;
+        padding: 4px !important;
+        /* 精簡外框內距 */
+    }
+
+    .course-table td {
+        display: block;
+        width: 100% !important;
+        border-bottom: 1px solid #f8f1e9;
+        padding: 6px 10px !important;
+        position: relative;
+        flex: 0 0 100%;
+        /* 預設佔滿全寬 */
+    }
+
+    .course-table td:last-child {
+        border-bottom: none;
+    }
+
+    /* 日期與類別併排 (左右對齊) */
+    .mobile-header-row {
+        display: flex !important;
+        flex-direction: row !important;
+        justify-content: space-between !important;
+        align-items: center !important;
+        width: 100%;
+        margin-bottom: 0;
+    }
+
+    /* 資訊標籤排成同一排 */
+    .mobile-meta-grid {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 4px 10px;
+        margin-top: 4px;
+        align-items: center;
+    }
+
+    /* 按鈕瘦身 */
+    .btn-primary,
+    .btn-secondary,
+    .btn-disabled {
+        width: auto !important;
+        padding: 4px 12px !important;
+        height: 32px !important;
+        font-size: 0.8rem !important;
+        border-radius: 50px !important;
+        white-space: nowrap !important;
+        display: inline-flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+    }
+
+    /* 7. 展開事項優化 (徹底移除垂直空白) */
+    .course-details {
+        background: transparent !important;
+        border: none !important;
+        padding: 0 !important;
+        margin: 0 !important;
+        box-shadow: none !important;
+    }
+
+    .course-details .pre-wrap {
+        height: auto !important;
+        max-height: 12rem !important;
+        overflow-y: auto !important;
+        padding: 10px !important;
+        font-size: 0.85rem !important;
+        line-height: 1.5 !important;
+        background: #fdfaf7 !important;
+        border: 1px solid #e2e8f0 !important;
+        border-radius: 10px !important;
+        margin: 4px 0 !important;
+        display: block;
+    }
+
+    /* 8. 出席人員與按鈕併排 (左右對齊) */
+    .course-table td[data-label="出席人員"],
+    .course-table td[data-label="操作"] {
+        flex: 0 0 50%;
+        /* 合力佔滿一行 */
+        width: 50% !important;
+        border-bottom: none !important;
+        padding: 8px 10px !important;
+        display: flex !important;
+        align-items: center !important;
+    }
+
+    .course-table td[data-label="操作"] {
+        justify-content: flex-end !important;
+    }
+
+    .table-attendees {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        min-height: 32px;
+    }
+
+    .course-table td {
+        padding: 12px 8px !important;
+    }
+
+    .table-title {
+        font-size: 1rem !important;
+    }
+
+    .category-tag.highlight {
+        padding: 2px 6px !important;
+        font-size: 0.7rem !important;
+    }
+
+    .link-text-hover {
+        color: var(--primary) !important;
+        text-decoration: none;
+        transition: all 0.2s;
+    }
+
+    }
+
+    .link-text-hover:hover {
+        text-decoration: underline;
+        opacity: 0.8;
+    }
+}
+
+/* Statistics Dashboard */
+.stats-container {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    padding: 10px 0;
+}
+
+.stats-summary {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 16px;
+}
+
+.stats-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius);
+    padding: 20px;
+    text-align: center;
+    box-shadow: var(--shadow);
+    transition: transform 0.2s;
+}
+
+.stats-card:hover {
+    transform: translateY(-4px);
+}
+
+.stats-value {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--primary);
+    margin-bottom: 4px;
+}
+
+.stats-label {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    font-weight: 600;
+}
+
+.stats-section-title {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--text-main);
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.stats-table-wrapper {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    overflow: hidden;
+}
+
+.stats-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9rem;
+}
+
+.stats-table th, .stats-table td {
+    padding: 12px 16px;
+    text-align: left;
+    border-bottom: 1px solid #f5ebe0;
+}
+
+.stats-table th {
+    background: #fdfaf7;
+    color: var(--text-muted);
+    font-weight: 600;
+}
+
+.stats-table tr:last-child td {
+    border-bottom: none;
+}
+
+.activity-tag {
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+
+.activity-tag.login { background: #dcfce7; color: #166534; }
+.activity-tag.switch_tab { background: #eff6ff; color: #1e40af; }
+.activity-tag.check_in { background: #fef9c3; color: #854d0e; }
+.activity-tag.cancel { background: #fee2e2; color: #991b1b; }
+.activity-tag.other { background: #f1f5f9; color: #475569; }
+
+/* 顯示全量按鈕 */
+.btn-toggle-logs {
+    margin-left: auto;
+    font-size: 0.75rem;
+    padding: 4px 10px;
+    border-radius: 6px;
+    border: 1px solid var(--border-color);
+    background: white;
+    color: var(--text-muted);
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.2s;
+}
+
+.btn-toggle-logs:hover {
+    background: #f8fafc;
+    border-color: var(--primary);
+}
+
+.btn-toggle-logs.active {
+    background: var(--primary);
+    color: white;
+    border-color: var(--primary);
+}

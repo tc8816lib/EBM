@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TC EBM</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Google Font -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+TC:wght@700&display=swap"
+        rel="stylesheet">
+    <!-- Google Identity Services -->
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+    <!-- Google Identity Services -->
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+
+    <!-- PWA / Mobile Icons -->
+    <link rel="icon" type="image/png" href="./icon.png">
+    <link rel="apple-touch-icon" href="./icon.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="./icon.png">
+</head>
+
+<body class="light-mode">
+    <div class="sticky-top-group">
+        <!-- 頂部導航 -->
+        <header>
+            <div class="container header-content">
+                <div class="logo">
+                    <img src="./icon.png" alt="Logo" class="logo-img">
+                    <span class="brand">中慈 EBM</span>
+                    <span class="tag">賽前輔導</span>
+                </div>
+                <div class="header-right">
+                    <button id="refresh-btn" class="icon-btn hidden" title="重新整理" onclick="location.reload()">
+                        🔄
+                    </button>
+                    <div id="user-info" class="hidden">
+                        <span id="user-name">載入中...</span>
+                        <button onclick="logout()" class="btn-text">登出</button>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <div id="sticky-auth-content" class="container hidden">
+            <!-- 最新訊息 (固定於最上方) -->
+            <div id="news-banner-container"></div>
+
+            <!-- 標籤切換 -->
+            <nav class="tabs">
+                <button class="tab-btn active" data-tab="courses">課程安排</button>
+                <button class="tab-btn" data-tab="prompts">AI Prompt</button>
+                <button class="tab-btn" data-tab="links">資源連結</button>
+                <button class="tab-btn" data-tab="info">競賽資訊</button>
+                <button id="tab-stats" class="tab-btn hidden" data-tab="statistics">使用統計</button>
+            </nav>
+        </div>
+    </div>
+
+    <!-- 登入區域 (置中) -->
+    <div id="login-section" class="container flex-center">
+        <div id="auth-container" class="login-card">
+            <img src="./icon.png" alt="Logo" class="login-logo">
+            <h2>歡迎進入 TC EBM</h2>
+            <p class="login-hint">請先登入以查看內容</p>
+            <div id="google-signin-btn"></div>
+        </div>
+    </div>
+
+    <main id="main-content" class="container hidden">
+        <!-- 內容渲染區域 (Loader 將動態注入到分頁中) -->
+        <section id="tab-content">
+            <div id="courses-grid" class="content-view active">
+                <div class="sub-filter-group">
+                    <button class="sub-filter-btn active" data-location="all">全部</button>
+                    <button class="sub-filter-btn" data-location="physical">實體課程</button>
+                    <button class="sub-filter-btn" data-location="online">線上課程</button>
+                </div>
+                <div id="courses-items" class="grid-container"></div>
+            </div>
+            <div id="prompts-grid" class="content-view"></div>
+            <div id="links-grid" class="content-view"></div>
+            <div id="info-grid" class="content-view"></div>
+            <div id="statistics-grid" class="content-view"></div>
+        </section>
+    </main>
+
+    <!-- 管理者浮動按鈕 -->
+    <button id="admin-add-btn" class="fab hidden" title="新增資料">+</button>
+
+    <!-- 提示框 (Toast) -->
+    <div id="toast" class="toast hidden"></div>
+
+    <!-- 互動彈窗 (Modal) -->
+    <div id="modal-overlay" class="modal-overlay hidden">
+        <div class="modal">
+            <div class="modal-header">
+                <h3 id="modal-title">標題</h3>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div class="modal-body" id="modal-body">
+                <!-- 動態注入表單 -->
+            </div>
+            <div class="modal-footer">
+                <button class="btn-cancel">取消</button>
+                <button class="btn-confirm">確定</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="config.js"></script>
+    <script src="app.js"></script>
+</body>
+
+</html>
